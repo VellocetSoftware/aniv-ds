@@ -17,6 +17,8 @@ services:
 
     tty: true
     restart: unless-stopped
+    environment:
+      - MAX_PLAYERS=50
     stdin_open: true
     container_name: aniv-ds
     user: "1000:1000"
