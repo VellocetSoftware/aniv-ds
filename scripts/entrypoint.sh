@@ -1,6 +1,6 @@
 #!/bin/bash
 NOW=$( date '+%F_%H-%M-%S' )
-if [ -z "$MAX_PLAYERS"]
+if [ -z "$MAX_PLAYERS" ]
 then
     MAX_PLAYERS=50
 fi
