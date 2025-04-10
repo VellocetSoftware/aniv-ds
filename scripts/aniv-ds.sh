@@ -3,7 +3,6 @@ set -e
 
 # Variables
 MAP="nightmare"
-PASSWORD=""
 
 # Constants
 INSTALL_DIR="$HOME/aniv-ds"
@@ -139,7 +138,11 @@ validate_server() {
     fi
 
     # Run the SteamCMD validation command
-    /bin/bash /home/steam/steamcmd/steamcmd.sh +force_install_dir "$INSTALL_DIR" +login "$USERNAME" +app_update "$APP_ID" validate +quit
+    if [ -z "$BETA" ]; then
+        /bin/bash /home/steam/steamcmd/steamcmd.sh +force_install_dir "$INSTALL_DIR" +login "$USERNAME" +app_update "$APP_ID" validate +quit
+    else
+        /bin/bash /home/steam/steamcmd/steamcmd.sh +force_install_dir "$INSTALL_DIR" +login "$USERNAME" +app_update "$APP_ID" -beta "$BETA" validate +quit
+    fi
 
     if [ $? -eq 0 ]; then
         echo "[$(date "$DATE_FORMAT")] Server validated successfully."
